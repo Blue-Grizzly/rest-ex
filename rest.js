@@ -198,6 +198,15 @@ function sortByUserid(postA, postB){
     return postA.userid.localeCompare(postB.userid);
 }
 
+// create function to check if sort by updates 
+// and then use the sort function selected
+// do similair for filter
+
+
+//create find functionality
+//should be able to canibalize from filter so start there
+
+
 
 
 
