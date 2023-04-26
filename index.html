@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="rest.css">
+</head>
+<body>
+    <header>
+        <h1> REST EXERCISE</h1>
+        <br>
+    </header>
+    
+    <section id="nav">
+        <button id="newpostbtn">Create New Post</button>
+        <form id="sortselector">
+            <label for="sortby">Sort by:</label>
+            <select name="sort" id="sortby">
+                <option value="sortByTitle">Title</option>
+                <option value="sortByUserid">User</option>
+            </select>
+        </form>
+    </section>
+
+    <section id="postgrid">
+
+    </section>
+
+    <dialog id="createpostmodal">
+        <form id="createpost">
+            <h2>Create a new Post</h2>
+            <input type="text" name="title" placeholder="Type your title" required>
+            <input type="text" name="body" placeholder="Type your post" required>
+            <input type="url" name="image" placeholder="Paste image url" required>
+            <input type="text" name="userid" placeholder="Insert user id" required>
+            <input type="submit" name="postbtn" value="Post">
+        </form>
+    </dialog>
+
+    <dialog id="deletepostconfirm">
+        <h2>Are you sure you want to delete this post?</h2>
+        <p id="deleteposttitle"></p>
+        <p>This can not be undone</p>
+        <form method="dialog" id="deletepostform">
+            <button type="button" class="deletecancel">NO</button>
+            <button type="submit" class="deleteconfirm">YES</button>
+        </form>
+    </dialog>
+
+
+    <dialog id="updatepostmodal">
+        <form id="updatepost">
+            <h2>Update Post</h2>
+            <input type="text" name="title" required id="updatetitle">
+            <input type="text" name="body" required id="updatebody">
+            <input type="url" name="image" required id="updateimg">
+            <input type="text" name="userid" hidden id="updateuser">
+            <input type="text" name="postid" hidden id="updatepostid">
+            <input type="submit" name="updatepost-btn" value="Update">
+        </form>
+    </dialog>
+
+    <dialog id="detailViewPost">
+         <section class="gridcontainer">
+            <img id="detailImagePost">
+            <h2 id="detailTitlePost"></h2>
+            <p id="detailBody"></p>
+            <p id="detailPostedBy"></p>
+       </section>
+    </dialog>
+
+    <!-- <table>
+        <tbody id="table2">
+            <tr>
+                <th>Image</th>
+                <th>User</th>
+            </tr>
+        </tbody>
+        </table> -->
+
+    <dialog id="detailViewUser">
+        <section class="gridcontainer">
+           <img id="detailImageUser">
+           <h2 id="detailTitleUser"></h2>
+           <h2 id="detailName"></h2>
+           <p id="detailPhone"></p>
+           <p id="detailMail"></p>
+      </section>
+   </dialog>
+  
+   <!-- <form id="form-create-user">
+    <h2>Create a new User</h2>
+    <input type="text" name="name" placeholder="Type your name" required>
+    <input type="text" name="title" placeholder="Type your title" required>
+    <input type="email" name="mail" placeholder="Type your mail" required>
+    <input type="url" name="image" placeholder="Paste image url" required>
+    <button>Create User</button>
+</form>
+
+<form id="form-update-user">
+    <h2>Update User</h2>
+    <input type="text" name="name" placeholder="Type your name" required>
+    <input type="text" name="title" placeholder="Type your title" required>
+    <input type="email" name="mail" placeholder="Type your mail" required>
+    <input type="url" name="image" placeholder="Paste image url" required>
+    <button>Update User</button>
+</form> -->
+
+
+    <footer></footer>
+ <script src="rest.js"></script>  
+</body>
+</html>
