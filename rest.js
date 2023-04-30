@@ -5,10 +5,8 @@ const endpoint = "https://rest-18e89-default-rtdb.europe-west1.firebasedatabase.
 
 window.addEventListener("load", start);
 
-async function start(){
+function start(){
     updatePostGrid();
-    // const userList = await getUsers();
-    // showAllUsers(userList);
     document.querySelector("#newpostbtn").addEventListener("click", createPostClicked);
 }
 
@@ -64,7 +62,7 @@ async function showPost(post){
         document.querySelector("#deleteposttitle").textContent = post.title;
         document.querySelector("#deletepostform").setAttribute("data-id", post.uid);
         document.querySelector("#deletepostconfirm").showModal();
-        document.querySelector("#deletepostform").addEventListener("submit", deletePostClicked)
+        document.querySelector("#deletepostform").addEventListener("submit", deletePostAccept)
     }
 
     function updateClicked(){
@@ -74,7 +72,7 @@ async function showPost(post){
     }
 }
 
-function deletePostClicked(event){
+function deletePostAccept(event){
     event.preventDefault();
     const postid = event.target.getAttribute("data-id");
     deletePost(postid);
