@@ -15,14 +15,48 @@
     
     <section id="nav">
         <button id="newpostbtn">Create New Post</button>
-        <form id="sortselector">
-            <label for="sortby">Sort by:</label>
-            <select name="sort" id="sortby">
-                <option value="sortByTitle">Title</option>
-                <option value="sortByUserid">User</option>
+    </section>
+
+    <section id="sort">
+        <legend for="sortby">Sort by:</legend>
+        <form id="sortby" name="sortby">
+            <select name="sortbyselect" id="sortbyselect">
+                <option value="name">Name</option>
+                <option value="age">Age</option>
+                <option value="title">Title</option>
+
             </select>
         </form>
+
     </section>
+
+    <section id="search">
+        <form id="searchbyname">
+            <input type="search" id="input-search" placeholder="Search by name">
+        </form>
+
+    </section>
+
+    <section id="filter">
+        <legend for="filterby">Filter by</legend>
+        <form id="filterby" name="filterby">
+            <label for="filterbyelf">Elves</label>
+            <input type="radio" name="filterby" id="filterbyelf" value="elf">
+            <label for="filterbymen">Men</label>
+            <input type="radio" name="filterby" id="filterbymen" value="men">
+            <label for="filterbyorc">Orcs</label>
+            <input type="radio" name="filterby" id="filterbyorc" value="orc">
+            <label for="filterbyhobbit">Hobbits</label>
+            <input type="radio" name="filterby" id="filterbyhobbit" value="hobbit">
+            <label for="filterbydwarf">Dwarves</label>
+            <input type="radio" name="filterby" id="filterbydwarf" value="dwarf">
+            <label for="filterbyainur">Ainur</label>
+            <input type="radio" name="filterby" id="filterbyainur" value="ainur">
+        </form>
+
+    </section>
+
+
 
     <section id="postgrid">
 

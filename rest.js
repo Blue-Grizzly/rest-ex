@@ -5,17 +5,23 @@ const endpoint = "https://rest-18e89-default-rtdb.europe-west1.firebasedatabase.
 
 window.addEventListener("load", start);
 
+let characters;
+
 function start(){
     updatePostGrid();
     document.querySelector("#newpostbtn").addEventListener("click", createPostClicked);
+    document.querySelector("#sortbyselect").addEventListener("change", sortInputChange);
+    document.querySelector("#input-search").addEventListener("keyup", searchInputChange);
+    document.querySelector("#input-search").addEventListener("search", searchInputChange);
+    document.querySelector("#filterby").addEventListener("change", filterByRaceChange);
 }
 
 //------------------POSTS-------------------//
 async function getPosts(){
     const response = await fetch(`${endpoint}/posts.json`)
     const data = await response.json();
-    const posts = preparePostData(data);
-    return posts;
+    characters = preparePostData(data);
+    return characters;
 }
 
 
@@ -181,20 +187,141 @@ const res = await fetch(`${endpoint}/posts/${id}.json`, {
 
 async function updatePostGrid() {
     const posts = await getPosts();
-    const sortoption = document.querySelector("#sortselector").elements.namedItem("sort").value;
-    console.log(sortoption);
-    const newpostlist = posts.sort(sortByUserid);
-    showAllPosts(newpostlist);
+    showAllPosts(posts);
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function sortByTitle(postA, postB){
-        return postA.title.localeCompare(postB.title);
+
+function searchInputChange(event){
+    const value = event.target.value;
+    const searchResults = searchByName(value);
+    showAllPosts(searchResults);
+
 }
 
-function sortByUserid(postA, postB){
-    return postA.userid.localeCompare(postB.userid);
+function searchByName(searchValue){
+    searchValue = searchValue.toLowerCase();
+
+    const results = characters.filter(checkNames);
+
+    function checkNames(post){
+        const name = post.title.toLowerCase();
+        return name.includes(searchValue);
+    }
+    
+    return results
 }
+
+function sortInputChange(event){
+    const value = event.target.value;
+    const sortResult = sortByOption(value);
+    showAllPosts(sortResult);
+
+}
+
+
+
+function sortByOption(sortValue) {
+    if(sortValue === "name"){
+        return characters.sort(compareName);
+    } else if (sortValue === "age"){
+        return characters.sort(compareAge);
+    } else if (sortValue === "title"){
+        return characters.sort(compareTitle);
+    }
+
+    function compareName(character1, character2){
+        return character1.name.localeCompare(character2.name);
+    }
+    
+    function compareAge(character1, character2){
+        return character1.age - character2.age;
+    }
+    
+    function compareTitle(character1, character2){
+        return character1.title.localeCompare(character2.title);
+    }
+}
+
+
+
+function filterByRaceChange(event){
+    const value = event.target.value;
+    const searchResults = filterByRace(value);
+    showAllPosts(searchResults);
+}
+
+function filterByRace(inputValue){
+    inputValue = inputValue.toLowerCase();
+    
+    if (inputValue === "elf"){
+        return characters.filter(filterElf);
+    } else if (inputValue === "men"){
+        return characters.filter(filterMen);
+    } else if (inputValue === "dwarf"){
+        return characters.filter(filterDwarf);
+    } else if (inputValue === "orc"){
+        return characters.filter(filterOrc);
+    } else if (inputValue === "ainur"){
+        return characters.filter(filterAinur);
+    } else if (inputValue === "hobbit"){
+        return characters.filter(filterHobbit);
+    }
+
+
+    function filterElf(character){
+        console.log("elf");
+        const race = character.race.toLowerCase();
+        return race.includes(searchValue);
+    }    
+    
+    function filterMen(character){
+        console.log("men");
+        const race = character.race.toLowerCase();
+        return race.includes(searchValue);
+    }    
+    
+    function filterDwarf(character){
+        console.log("dwarf");
+        const race = character.race.toLowerCase();
+        return race.includes(searchValue);
+    }    
+    
+    function filterOrc(character){
+        console.log("orc");
+        const race = character.race.toLowerCase();
+        return race.includes(searchValue);
+    }    
+    
+    function filterAinur(character){
+        console.log("ainur");
+        const race = character.race.toLowerCase();
+        return race.includes(searchValue);
+    }    
+    
+    function filterHobbit(character){
+        console.log("hobbit");
+        const race = character.race.toLowerCase();
+        return race.includes(searchValue);
+    }
+
+}
+
+
+
+/*{if (inputValue === "race"){
+    return posts.filter(checkRace);
+    } else if (inputValue === "weapon"){
+        return posts.filter(checkWeapon);
+    } else if (inputValue === "realm"){
+        return posts.filter(checkRealm);
+    }  else if (inputValue === "race"){
+    return posts.filter(checkRace);
+    }  
+
+}*/
+
+
 
 // create function to check if sort by updates 
 // and then use the sort function selected
